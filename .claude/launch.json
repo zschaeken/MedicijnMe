@@ -1,0 +1,24 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "npx serve (aanbevolen)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", ".", "--no-clipboard"],
+      "port": 3000,
+      "autoPort": true
+    },
+    {
+      "name": "Python HTTP server",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8000"],
+      "port": 8000
+    },
+    {
+      "name": "npx live-server (met auto-reload)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["live-server", "--port=8080", "--no-browser"],
+      "port": 8080
+    }
+  ]
+}

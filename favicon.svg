@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Groene achtergrond met afgeronde hoeken -->
+  <rect width="32" height="32" rx="7" fill="#0f7a4e"/>
+  <!-- Wit hartje gecentreerd -->
+  <path d="M16 23s-8-5.2-8-10.2a4.4 4.4 0 0 1 8-2.5 4.4 4.4 0 0 1 8 2.5C24 17.8 16 23 16 23z" fill="white"/>
+</svg>

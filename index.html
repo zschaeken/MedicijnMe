@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedicijnMe | Begrijpelijke medicijninformatie</title>
+  <meta name="description" content="Duidelijke, betrouwbare informatie over medicijnen in gewone taal. Gebaseerd op officiële Belgische bronnen." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@600;700&display=swap" rel="stylesheet" />
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.ico" sizes="32x32" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <meta name="theme-color" content="#0f7a4e" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">
+        <span class="logo-mark">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+          </svg>
+        </span>
+        MedicijnMe
+      </a>
+      <nav class="nav">
+        <a href="#medicijnen">Medicijnen</a>
+        <a href="#categorieen">Categorieën</a>
+        <a href="#over">Over ons</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-lines" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="badge">Belgische medicijninformatie</span>
+        <h1>Begrijp wat je slikt</h1>
+        <p class="hero-sub">
+          Bijsluiters zijn vaak te technisch. MedicijnMe vertaalt officiële informatie naar gewone taal. Eerlijk, duidelijk, betrouwbaar.
+        </p>
+        <div class="search-wrap">
+          <div class="search-field">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+            </svg>
+            <input
+              type="text"
+              id="searchInput"
+              class="search-input"
+              placeholder="Zoek een medicijn… bijv. paracetamol"
+              autocomplete="off"
+            />
+          </div>
+          <button class="search-btn" onclick="doSearch()">Zoeken</button>
+          <ul id="searchSuggestions" class="suggestions"></ul>
+        </div>
+        <p class="search-hint">Populair: <a href="medicijnen/paracetamol.html">Paracetamol</a> · <a href="medicijnen/ibuprofen.html">Ibuprofen</a> · <a href="medicijnen/amoxicilline.html">Amoxicilline</a> · <a href="medicijnen/cetirizine.html">Cetirizine</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIEËN -->
+  <section class="section" id="categorieen">
+    <div class="container">
+      <h2 class="section-title">Blader per categorie</h2>
+      <div class="category-grid">
+
+        <a class="cat-card" href="categorie/pijnstillers.html">
+          <span class="cat-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+              <path d="m8.5 8.5 7 7"/>
+            </svg>
+          </span>
+          <span class="cat-text">
+            <span class="cat-name">Pijnstillers</span>
+            <span class="cat-count">8 medicijnen</span>
+          </span>
+        </a>
+
+        <a class="cat-card" href="categorie/antibiotica.html">
+          <span class="cat-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"/><line x1="4" x2="20" y1="3" y2="3"/>
+            </svg>
+          </span>
+          <span class="cat-text">
+            <span class="cat-name">Antibiotica</span>
+            <span class="cat-count">7 medicijnen</span>
+          </span>
+        </a>
+
+        <a class="cat-card" href="categorie/allergie.html">
+          <span class="cat-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11.5 15H7a4 4 0 0 0-4 4v2"/><path d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 1-2.828 0 2 2 0 0 1 0-2.828l4.013-4.012"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </span>
+          <span class="cat-text">
+            <span class="cat-name">Allergie</span>
+            <span class="cat-count">5 medicijnen</span>
+          </span>
+        </a>
+
+        <a class="cat-card" href="categorie/maag.html">
+          <span class="cat-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a5 5 0 0 1 5 5c0 5-5 13-5 13S7 12 7 7a5 5 0 0 1 5-5Z"/>
+            </svg>
+          </span>
+          <span class="cat-text">
+            <span class="cat-name">Maag &amp; Darm</span>
+            <span class="cat-count">6 medicijnen</span>
+          </span>
+        </a>
+
+        <a class="cat-card" href="categorie/hart.html">
+          <span class="cat-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>
+          </span>
+          <span class="cat-text">
+            <span class="cat-name">Hart &amp; Bloedvaten</span>
+            <span class="cat-count">6 medicijnen</span>
+          </span>
+        </a>
+
+        <a class="cat-card" href="categorie/luchtwegen.html">
+          <span class="cat-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6.081 20C3.34 18.735 1 15.964 1 12c0-1.33.275-2.594.768-3.74"/>
+              <path d="M12 2v10"/>
+              <path d="M17.919 20C20.66 18.735 23 15.964 23 12c0-1.33-.275-2.594-.768-3.74"/>
+              <path d="M9 22c-1 0-3-1-3-3V9"/>
+              <path d="M15 22c1 0 3-1 3-3V9"/>
+            </svg>
+          </span>
+          <span class="cat-text">
+            <span class="cat-name">Luchtwegen</span>
+            <span class="cat-count">5 medicijnen</span>
+          </span>
+        </a>
+
+        <a class="cat-card" href="categorie/huid.html">
+          <span class="cat-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 11.5V9a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v1.4"/>
+              <path d="M14 10V8a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/>
+              <path d="M10 9.9V9a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v5"/>
+              <path d="M6 14v0a2 2 0 0 1 2 2v1a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-1a2 2 0 0 1 2-2v0"/>
+              <path d="M18 11a2 2 0 0 1 2 2v3"/>
+            </svg>
+          </span>
+          <span class="cat-text">
+            <span class="cat-name">Huid</span>
+            <span class="cat-count">4 medicijnen</span>
+          </span>
+        </a>
+
+        <a class="cat-card cat-card--more" href="medicijnen/">
+          <span class="cat-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/>
+              <rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>
+            </svg>
+          </span>
+          <span class="cat-text">
+            <span class="cat-name">Alle medicijnen</span>
+            <span class="cat-count">bekijk overzicht</span>
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDICIJNEN GRID -->
+  <section class="section section--alt" id="medicijnen">
+    <div class="container">
+      <h2 class="section-title">Veelgebruikte medicijnen</h2>
+      <p class="section-sub">Klik op een medicijn voor uitgebreide informatie in gewone taal.</p>
+      <div class="med-grid" id="medGrid">
+        <a class="med-card" href="medicijnen/paracetamol.html" data-cat="pijnstiller">
+          <span class="med-name">Paracetamol</span>
+          <span class="med-alt">Dafalgan · Perdolan · Panadol</span>
+          <span class="tag green">Pijnstiller</span>
+        </a>
+        <a class="med-card" href="medicijnen/ibuprofen.html" data-cat="pijnstiller">
+          <span class="med-name">Ibuprofen</span>
+          <span class="med-alt">Brufen · Advil · Nurofen</span>
+          <span class="tag green">Pijnstiller / NSAID</span>
+        </a>
+        <a class="med-card" href="medicijnen/naproxen.html" data-cat="pijnstiller">
+          <span class="med-name">Naproxen</span>
+          <span class="med-alt">Aleve · Naprosyn</span>
+          <span class="tag green">NSAID</span>
+        </a>
+        <a class="med-card" href="medicijnen/aspirine.html" data-cat="pijnstiller">
+          <span class="med-name">Aspirine (ASA)</span>
+          <span class="med-alt">Cardioaspirine · Aspégic</span>
+          <span class="tag green">Pijnstiller / Bloedverdunner</span>
+        </a>
+        <a class="med-card" href="medicijnen/amoxicilline.html" data-cat="antibioticum">
+          <span class="med-name">Amoxicilline</span>
+          <span class="med-alt">Clamoxyl · Flemoxin</span>
+          <span class="tag orange">Antibioticum</span>
+        </a>
+        <a class="med-card" href="medicijnen/azitromycine.html" data-cat="antibioticum">
+          <span class="med-name">Azitromycine</span>
+          <span class="med-alt">Zithromax</span>
+          <span class="tag orange">Antibioticum</span>
+        </a>
+        <a class="med-card" href="medicijnen/doxycycline.html" data-cat="antibioticum">
+          <span class="med-name">Doxycycline</span>
+          <span class="med-alt">Vibramycin · Doxylin</span>
+          <span class="tag orange">Antibioticum</span>
+        </a>
+        <a class="med-card" href="medicijnen/cetirizine.html" data-cat="allergie">
+          <span class="med-name">Cetirizine</span>
+          <span class="med-alt">Zyrtec · Reactine</span>
+          <span class="tag purple">Antihistaminicum</span>
+        </a>
+        <a class="med-card" href="medicijnen/loratadine.html" data-cat="allergie">
+          <span class="med-name">Loratadine</span>
+          <span class="med-alt">Claritine</span>
+          <span class="tag purple">Antihistaminicum</span>
+        </a>
+        <a class="med-card" href="medicijnen/fexofenadine.html" data-cat="allergie">
+          <span class="med-name">Fexofenadine</span>
+          <span class="med-alt">Telfast</span>
+          <span class="tag purple">Antihistaminicum</span>
+        </a>
+        <a class="med-card" href="medicijnen/omeprazol.html" data-cat="maag">
+          <span class="med-name">Omeprazol</span>
+          <span class="med-alt">Losec</span>
+          <span class="tag blue">Maagzuurremmer</span>
+        </a>
+        <a class="med-card" href="medicijnen/pantoprazol.html" data-cat="maag">
+          <span class="med-name">Pantoprazol</span>
+          <span class="med-alt">Pantomed · Controloc</span>
+          <span class="tag blue">Maagzuurremmer</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOE HET WERKT -->
+  <section class="section" id="over">
+    <div class="container">
+      <h2 class="section-title">Hoe werkt MedicijnMe?</h2>
+      <div class="trust-grid">
+
+        <div class="trust-card">
+          <span class="trust-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
+              <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+              <path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>
+            </svg>
+          </span>
+          <h3>Officiële bronnen</h3>
+          <p>Alle informatie is gebaseerd op bijsluiters en databanken van <strong>FAGG</strong>, <strong>CBIP</strong> en <strong>RIZIV</strong>, de officiële Belgische instanties.</p>
+        </div>
+
+        <div class="trust-card">
+          <span class="trust-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </span>
+          <h3>Gewone taal</h3>
+          <p>We vermijden jargon. Complexe medische termen worden uitgelegd of vervangen door begrijpelijke alternatieven.</p>
+        </div>
+
+        <div class="trust-card">
+          <span class="trust-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </span>
+          <h3>Geen medisch advies</h3>
+          <p>MedicijnMe vervangt je arts of apotheker niet. Bij twijfel over je behandeling raadpleeg je altijd een zorgprofessional.</p>
+        </div>
+
+        <div class="trust-card">
+          <span class="trust-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+              <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
+              <path d="M16 16h5v5"/>
+            </svg>
+          </span>
+          <h3>Regelmatig bijgewerkt</h3>
+          <p>We controleren de informatie regelmatig op wijzigingen in officiële bijsluiters en richtlijnen.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="logo logo--light">
+          <span class="logo-mark logo-mark--light">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>
+          </span>
+          MedicijnMe
+        </a>
+        <p>Begrijpelijke medicijninformatie voor iedereen.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <strong>Bronnen</strong>
+          <a href="https://www.fagg.be" target="_blank" rel="noopener">FAGG</a>
+          <a href="https://www.cbip.be" target="_blank" rel="noopener">CBIP</a>
+          <a href="https://www.riziv.fgov.be" target="_blank" rel="noopener">RIZIV</a>
+        </div>
+        <div>
+          <strong>Navigatie</strong>
+          <a href="#medicijnen">Medicijnen</a>
+          <a href="#categorieen">Categorieën</a>
+          <a href="#over">Over ons</a>
+        </div>
+        <div>
+          <strong>Juridisch</strong>
+          <a href="disclaimer.html">Disclaimer</a>
+          <a href="privacy.html">Privacybeleid</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2026 MedicijnMe · Informatie gebaseerd op FAGG/CBIP-bijsluiters · Geen medisch advies</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
