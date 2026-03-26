@@ -104,6 +104,61 @@ function doSearch() {
   }
 }
 
+// ===== HAMBURGER MENU =====
+(function () {
+  const toggle = document.getElementById('navToggle');
+  const nav    = document.getElementById('mainNav');
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    toggle.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open);
+    toggle.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu openen');
+  });
+
+  // Sluit bij klikken op een link
+  nav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      nav.classList.remove('is-open');
+      toggle.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Sluit bij klikken buiten de header
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.site-header')) {
+      nav.classList.remove('is-open');
+      toggle.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+
+// ===== TOON MEER (mobiel medicijnen-grid) =====
+(function () {
+  const grid = document.getElementById('medGrid');
+  if (!grid) return;
+
+  const cards = Array.from(grid.querySelectorAll('.med-card'));
+  const LIMIT = 6;
+  if (cards.length <= LIMIT) return;
+
+  cards.slice(LIMIT).forEach(c => c.classList.add('is-hidden'));
+
+  const btn = document.createElement('button');
+  btn.className = 'med-show-more';
+  btn.textContent = `Toon alle ${cards.length} medicijnen`;
+
+  btn.addEventListener('click', () => {
+    cards.forEach(c => c.classList.remove('is-hidden'));
+    btn.remove();
+  });
+
+  grid.insertAdjacentElement('afterend', btn);
+})();
+
 // ── Scroll-spy for medicine page section tabs ────────────────────────────────────────────────────
 (function () {
   const tabs = document.querySelectorAll('.med-tab');
