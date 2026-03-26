@@ -4,13 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Over de maker | MedicijnMe</title>
-  <meta name="description" content="Leer meer over de persoon achter MedicijnMe en de reden waarom dit platform werd opgericht." />
+  <meta name="description" content="De persoon achter MedicijnMe en de reden waarom dit platform bestaat." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@600;700&display=swap" rel="stylesheet" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="favicon.ico" sizes="32x32" />
-  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <meta name="theme-color" content="#0f7a4e" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -43,83 +41,59 @@
     </div>
   </header>
 
-  <div class="page-header">
+  <!-- PROFIEL BANNER -->
+  <div class="maker-banner"></div>
+
+  <!-- PROFIEL KAART -->
+  <section class="maker-section">
     <div class="container">
-      <nav class="breadcrumb" aria-label="Navigatiepad">
-        <a href="index.html">Home</a>
-        <span class="breadcrumb-sep" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-        </span>
-        <span aria-current="page">Over de maker</span>
-      </nav>
-      <h1>Over de maker</h1>
-      <p class="page-desc">De persoon achter MedicijnMe en de reden waarom dit platform bestaat.</p>
-    </div>
-  </div>
+      <div class="maker-card">
 
-  <div class="container">
-    <div class="maker-layout">
-
-      <!-- FOTO -->
-      <div class="maker-photo-wrap">
-        <div class="maker-photo">
-          <!--
-            Voeg hier je profielfoto toe:
-            Vervang de placeholder door:
-            <img src="images/maker.jpg" alt="Jouw naam" class="maker-img" />
-            Aanbevolen formaat: vierkant, minimaal 400×400px, max. 150KB (WebP of JPG)
-          -->
-          <div class="maker-photo-placeholder">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="8" r="4"/>
-              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        <!-- Foto -->
+        <div class="maker-photo-wrap">
+          <img
+            src="images/maker.jpg"
+            alt="Foto van de maker"
+            class="maker-img"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+          />
+          <div class="maker-img-fallback">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/>
             </svg>
-            <span>Voeg hier je foto toe</span>
-            <code>images/maker.jpg</code>
           </div>
         </div>
-      </div>
 
-      <!-- BIO -->
-      <div class="maker-bio">
-        <h2>Jouw naam</h2>
-        <span class="maker-subtitle">Oprichter van MedicijnMe</span>
+        <!-- Bio -->
+        <div class="maker-body">
+          <span class="maker-badge">Oprichter</span>
+          <h1 class="maker-name">Jouw naam</h1>
+          <p class="maker-role">Oprichter &amp; redacteur van MedicijnMe</p>
 
-        <p>
-          Vertel hier iets over jezelf: wie je bent, wat je achtergrond is, en waarom je MedicijnMe hebt opgericht. Dit geeft bezoekers vertrouwen en laat zien dat er een echte persoon achter dit platform zit.
-        </p>
+          <blockquote class="maker-quote">
+            "Bijsluiters zijn geschreven voor zorgprofessionals, niet voor patiënten. Dat wil ik veranderen."
+          </blockquote>
 
-        <p>
-          Waarom MedicijnMe? Bijsluiters zijn geschreven voor zorgprofessionals, niet voor patiënten. Het gevolg is dat mensen medicijnen niet correct gebruiken, bijwerkingen niet herkennen, of onnodig stoppen met een behandeling. MedicijnMe wil daar verandering in brengen.
-        </p>
-
-        <p>
-          Alle informatie op dit platform is gebaseerd op officiële bronnen van het FAGG en CBIP, en wordt vertaald naar gewone taal zonder medisch jargon.
-        </p>
-
-        <hr class="maker-divider" />
-
-        <div class="maker-links">
-          <!-- Vervang de href door je eigen LinkedIn-URL -->
-          <a href="https://www.linkedin.com/in/jouw-naam" target="_blank" rel="noopener" class="btn-linkedin">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-              <rect width="4" height="12" x="2" y="9"/>
-              <circle cx="4" cy="4" r="2"/>
-            </svg>
-            LinkedIn-profiel bekijken
-          </a>
-          <a href="index.html" class="btn-outline">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="m15 18-6-6 6-6"/>
-            </svg>
-            Terug naar MedicijnMe
-          </a>
+          <div class="maker-actions">
+            <a href="https://www.linkedin.com/in/zjef-schaeken/" target="_blank" rel="noopener" class="btn-linkedin">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>
+              </svg>
+              LinkedIn
+            </a>
+            <a href="index.html" class="btn-back">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 18-6-6 6-6"/>
+              </svg>
+              Terug naar MedicijnMe
+            </a>
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
-  </div>
+  </section>
 
   <footer class="site-footer">
     <div class="container footer-inner">
