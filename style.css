@@ -77,7 +77,7 @@ a { color: inherit; text-decoration: none; }
   flex-shrink: 0;
 }
 
-.nav { display: flex; gap: 24px; }
+.nav { display: flex; gap: 24px; align-items: center; }
 .nav a {
   font-size: .9rem;
   font-weight: 500;
@@ -85,6 +85,26 @@ a { color: inherit; text-decoration: none; }
   transition: color .15s;
 }
 .nav a:hover { color: var(--ink); }
+
+/* Hamburger — verborgen op desktop, zichtbaar op mobiel */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: none;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: var(--ink);
+  flex-shrink: 0;
+  transition: border-color .15s;
+}
+.nav-toggle:hover { border-color: var(--green); color: var(--green); }
+.nav-toggle .icon-close { display: none; }
+.nav-toggle.is-open .icon-open { display: none; }
+.nav-toggle.is-open .icon-close { display: block; }
 
 /* ===== HERO ===== */
 .hero {
@@ -354,6 +374,8 @@ a { color: inherit; text-decoration: none; }
   border-radius: var(--radius);
   transition: border-color .15s, box-shadow .15s;
   cursor: pointer;
+  min-width: 0;        /* laat 1fr echt werken in het grid */
+  overflow: hidden;
 }
 .cat-card:hover {
   border-color: var(--green);
@@ -416,6 +438,27 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 2px 8px rgba(0,0,0,.07);
 }
 
+/* Desktop: altijd zichtbaar; mobiel: verborgen via media query */
+.med-card.is-hidden { display: flex; }
+
+/* "Toon alle" knop — alleen zichtbaar op mobiel */
+.med-show-more {
+  display: none;
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--bg);
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius);
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--muted);
+  font-family: inherit;
+  cursor: pointer;
+  transition: color .15s, border-color .15s;
+}
+.med-show-more:hover { color: var(--green); border-color: var(--green); }
+
 .med-name { font-weight: 600; font-size: .97rem; color: var(--ink); }
 .med-alt  { font-size: .8rem; color: var(--muted); }
 
@@ -459,6 +502,69 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.7;
 }
 
+/* ===== CATEGORY HERO (met achtergrondafbeelding) ===== */
+.cat-hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-color: #0a2818;
+  padding: 52px 0;
+  overflow: hidden;
+}
+.cat-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(5,30,15,.88) 0%, rgba(5,30,15,.6) 100%);
+  pointer-events: none;
+}
+.cat-hero-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.cat-hero-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 12px;
+  color: #fff;
+  flex-shrink: 0;
+  backdrop-filter: blur(4px);
+}
+.cat-hero-text h1 {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -.02em;
+  margin-bottom: 6px;
+  text-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+.cat-hero-text p {
+  font-size: .97rem;
+  color: rgba(255,255,255,.82);
+  line-height: 1.65;
+  max-width: 520px;
+}
+.cat-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .8rem;
+  color: rgba(255,255,255,.6);
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.cat-breadcrumb a { color: rgba(255,255,255,.75); transition: color .15s; }
+.cat-breadcrumb a:hover { color: #fff; }
+.cat-breadcrumb-sep { opacity: .45; }
+
 /* ===== FOOTER ===== */
 .site-footer {
   background: #111827;
@@ -497,15 +603,18 @@ a { color: inherit; text-decoration: none; }
 .breadcrumb {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: .8rem;
+  gap: 6px;
+  font-size: .82rem;
   color: var(--muted);
-  margin-bottom: 10px;
+  margin-bottom: 24px;
   flex-wrap: wrap;
 }
-.breadcrumb a { color: var(--muted); }
-.breadcrumb a:hover { color: var(--ink); }
-.breadcrumb-sep { display: inline-flex; align-items: center; color: var(--border); }
+.breadcrumb a { color: var(--green); }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb-sep {
+  color: var(--border);
+  display: inline-block;
+}
 
 /* ===== PAGE HEADER (medicine / category pages) ===== */
 .page-header {
@@ -735,9 +844,23 @@ a { color: inherit; text-decoration: none; }
 .dosage-table tr:nth-child(even) td { background: #fafafa; }
 
 /* ===== RELATED MEDICINES ===== */
-.related-medicines { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
-.related-medicines h2 { font-family: 'Lora', Georgia, serif; font-size: 1.2rem; margin-bottom: 16px; color: var(--ink); }
-.related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+.related-medicines {
+  margin-top: 48px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border);
+}
+.related-medicines h2 {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
 
 /* ===== FILTER BAR (medicijnen overview) ===== */
 .filter-bar {
@@ -842,174 +965,22 @@ a { color: inherit; text-decoration: none; }
 }
 .static-page ul { padding-left: 20px; }
 
-/* ===== HAMBURGER TOGGLE ===== */
-.nav-toggle {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: none;
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  cursor: pointer;
-  color: var(--ink);
-  flex-shrink: 0;
-  transition: background .15s;
-}
-.nav-toggle:hover { background: var(--bg); }
-.nav-toggle .icon-close { display: none; }
-.nav-toggle.is-open .icon-open { display: none; }
-.nav-toggle.is-open .icon-close { display: block; }
+/* ===== RESPONSIVE =====
+   Volgorde: groot → klein (mobile-last)
+   900px  tablet landscape
+   768px  tablet portrait  + hamburger menu
+   640px  grote telefoon
+   480px  kleine telefoon
+   ============================= */
 
-/* ===== MOBILE SHOW MORE ===== */
-.med-show-more {
-  display: none;
-  width: 100%;
-  margin-top: 14px;
-  padding: 12px;
-  background: var(--white);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  font-size: .9rem;
-  font-weight: 600;
-  font-family: inherit;
-  color: var(--ink-2);
-  cursor: pointer;
-  transition: border-color .15s, color .15s;
-}
-.med-show-more:hover { border-color: var(--green); color: var(--green); }
-
-/* ===== MAKER PAGE ===== */
-.maker-layout {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 56px;
-  align-items: start;
-  padding: 56px 0;
-  max-width: 880px;
-}
-
-.maker-photo-wrap {
-  position: sticky;
-  top: 80px;
-}
-
-.maker-photo {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--bg);
-  border: 1px solid var(--border);
-}
-
-.maker-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.maker-photo-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  color: var(--muted);
-  font-size: .82rem;
-  text-align: center;
-  padding: 24px;
-  min-height: 260px;
-}
-.maker-photo-placeholder svg { color: var(--border); }
-.maker-photo-placeholder code {
-  display: block;
-  background: var(--border);
-  color: var(--ink-2);
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-size: .75rem;
-  margin-top: 4px;
-}
-
-.maker-bio h2 {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 1.9rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 4px;
-  letter-spacing: -.02em;
-}
-
-.maker-subtitle {
-  font-size: .92rem;
-  color: var(--green);
-  font-weight: 600;
-  margin-bottom: 24px;
-  display: block;
-}
-
-.maker-bio p {
-  font-size: .97rem;
-  color: var(--ink-2);
-  line-height: 1.8;
-  margin-bottom: 14px;
-}
-
-.maker-links {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 24px;
-}
-
-.btn-linkedin {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #0a66c2;
-  color: #fff;
-  padding: 11px 22px;
-  border-radius: var(--radius);
-  font-size: .9rem;
-  font-weight: 600;
-  transition: background .15s;
-}
-.btn-linkedin:hover { background: #004182; }
-
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--white);
-  color: var(--ink-2);
-  border: 1.5px solid var(--border);
-  padding: 11px 22px;
-  border-radius: var(--radius);
-  font-size: .9rem;
-  font-weight: 600;
-  transition: border-color .15s, color .15s;
-}
-.btn-outline:hover { border-color: var(--green); color: var(--green); }
-
-.maker-divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 32px 0;
-}
-
-/* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .content-layout { grid-template-columns: 1fr; }
+  .content-sidebar { display: none; }
   .section-nav {
     position: static;
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 6px;
     padding: 12px;
   }
   .section-nav-title { display: none; }
@@ -1017,7 +988,7 @@ a { color: inherit; text-decoration: none; }
     border-left: none;
     border-radius: 20px;
     border: 1.5px solid var(--border);
-    padding: 5px 12px;
+    padding: 5px 14px;
     font-size: .82rem;
   }
   .section-nav a:hover,
@@ -1025,9 +996,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 768px) {
-  /* Hamburger active */
+  /* Hamburger: toon toggle, verberg nav */
   .nav-toggle { display: flex; }
-
   .nav {
     display: none;
     position: absolute;
@@ -1035,302 +1005,65 @@ a { color: inherit; text-decoration: none; }
     left: 0;
     right: 0;
     background: var(--white);
-    border-bottom: 2px solid var(--border);
+    border-bottom: 2px solid var(--green);
+    padding: 8px 24px 16px;
     flex-direction: column;
-    padding: 4px 0 12px;
     gap: 0;
-    box-shadow: 0 8px 24px rgba(0,0,0,.1);
-    z-index: 99;
+    box-shadow: 0 6px 20px rgba(0,0,0,.1);
+    z-index: 98;
   }
   .nav.is-open { display: flex; }
   .nav a {
+    display: block;
+    padding: 11px 0;
     font-size: .97rem;
-    padding: 13px 24px;
-    border-bottom: 1px solid var(--bg);
     color: var(--ink-2);
-    width: 100%;
+    border-bottom: 1px solid var(--bg);
   }
   .nav a:last-child { border-bottom: none; }
-  .nav a:hover { color: var(--green); background: #f0fdf6; }
+  .nav a:hover { color: var(--green); }
 
-  .hero h1 { font-size: 2.1rem; }
-  .hero { padding: 52px 0 60px; }
-  .section { padding: 52px 0; }
+  /* Overige aanpassingen op tablet */
+  .hero h1 { font-size: 2.2rem; }
   .footer-inner { grid-template-columns: 1fr; gap: 32px; }
   .footer-links { grid-template-columns: repeat(2, 1fr); }
-  .maker-layout { grid-template-columns: 1fr; gap: 32px; padding: 36px 0; }
-  .maker-photo-wrap { position: static; }
-  .maker-photo { max-width: 200px; }
+  .cat-hero-inner { flex-direction: column; align-items: flex-start; }
+  .cat-hero-text h1 { font-size: 1.75rem; }
 }
 
 @media (max-width: 640px) {
   .quick-facts { grid-template-columns: 1fr 1fr; }
-  .dosage-table { font-size: .82rem; }
-  .dosage-table th, .dosage-table td { padding: 8px 10px; }
-  .page-header h1 { font-size: 1.6rem; }
-  .cat-page-text h1 { font-size: 1.5rem; }
-  .related-grid { grid-template-columns: 1fr 1fr; }
   .quick-answer { grid-template-columns: 1fr 1fr; }
   .qa-item:last-child { grid-column: 1 / -1; }
-  .med-show-more { display: block; }
-  .med-card.is-hidden { display: none; }
+  .dosage-table { font-size: .82rem; }
+  .dosage-table th,
+  .dosage-table td { padding: 8px 10px; }
+  .page-header h1 { font-size: 1.6rem; }
+  .cat-hero-text h1 { font-size: 1.5rem; }
+  .related-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 480px) {
-  .hero { padding: 40px 0 48px; }
-  .hero h1 { font-size: 1.85rem; }
-  .section { padding: 40px 0; }
+  .hero { padding: 48px 0 56px; }
+  .section { padding: 48px 0; }
   .search-wrap { flex-direction: column; }
   .search-btn { width: 100%; }
   .suggestions { right: 0; }
   .footer-links { grid-template-columns: 1fr; }
-  .category-grid { grid-template-columns: 1fr 1fr; }
-  .quick-answer { grid-template-columns: 1fr; }
-  .qa-item:last-child { grid-column: unset; }
-}
 
-/* ===== CATEGORY HERO ===== */
-.cat-hero {
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  border-bottom: 1px solid rgba(0,0,0,.2);
-  padding: 64px 0 52px;
-  overflow: hidden;
-  min-height: 220px;
-  display: flex;
-  align-items: center;
-}
+  /* Categorie: 2 kolommen met compactere kaartjes */
+  .category-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cat-card { padding: 12px 12px; gap: 10px; }
+  .cat-icon-wrap { width: 32px; height: 32px; flex-shrink: 0; }
+  .cat-icon-wrap svg { width: 16px; height: 16px; }
+  .cat-name { font-size: .84rem; }
+  .cat-count { font-size: .72rem; }
 
-.cat-hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg, rgba(5,30,15,.80) 0%, rgba(5,30,15,.60) 60%, rgba(5,30,15,.30) 100%);
-  pointer-events: none;
-}
+  /* Medicijn en trust grids: 1 kolom */
+  .med-grid { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr; }
 
-.cat-hero--antibiotica { background-color: #0c2d3a; }
-.cat-hero--allergie    { background-color: #2d1f4a; }
-.cat-hero--maag        { background-color: #3a1f00; }
-.cat-hero--hart        { background-color: #3a0a0a; }
-.cat-hero--luchtwegen  { background-color: #0a1f3a; }
-.cat-hero--huid        { background-color: #2a1a0a; }
-.cat-hero--pijnstillers{ background-color: #0a2818; }
-
-.cat-hero-inner {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.cat-hero-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  background: rgba(255,255,255,.15);
-  border: 1px solid rgba(255,255,255,.25);
-  border-radius: var(--radius);
-  color: #fff;
-  flex-shrink: 0;
-  backdrop-filter: blur(4px);
-}
-
-.cat-hero-text .cat-breadcrumb {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: .78rem;
-  color: rgba(255,255,255,.6);
-  margin-bottom: 8px;
-}
-.cat-hero-text .cat-breadcrumb a { color: rgba(255,255,255,.6); }
-.cat-hero-text .cat-breadcrumb a:hover { color: #fff; }
-
-.cat-hero-text h1 {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 8px;
-  letter-spacing: -.02em;
-  text-shadow: 0 1px 3px rgba(0,0,0,.25);
-}
-
-.cat-hero-text p {
-  font-size: .92rem;
-  color: rgba(255,255,255,.82);
-  max-width: 560px;
-  line-height: 1.65;
-}
-
-/* ===== MEDICINE PAGE — HORIZONTAL SECTION TABS ===== */
-.med-tabs-bar {
-  position: sticky;
-  top: 57px;
-  z-index: 90;
-  background: var(--white);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 2px 8px rgba(0,0,0,.05);
-}
-
-.med-tabs-inner {
-  display: flex;
-  gap: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.med-tabs-inner::-webkit-scrollbar { display: none; }
-
-.med-tab {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 14px 18px;
-  font-size: .85rem;
-  font-weight: 500;
-  color: var(--muted);
-  white-space: nowrap;
-  border-bottom: 2px solid transparent;
-  transition: color .15s, border-color .15s;
-  cursor: pointer;
-  text-decoration: none;
-}
-.med-tab:hover { color: var(--ink); border-bottom-color: var(--border); }
-.med-tab.active { color: var(--green); border-bottom-color: var(--green); }
-.med-tab svg { flex-shrink: 0; }
-
-/* ===== QUICK ANSWER BOX ===== */
-.quick-answer {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-top: 16px;
-}
-
-.qa-item {
-  background: var(--white);
-  padding: 14px 18px;
-}
-
-.qa-label {
-  font-size: .7rem;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 4px;
-}
-
-.qa-value {
-  font-size: .88rem;
-  color: var(--ink);
-  font-weight: 500;
-  line-height: 1.45;
-}
-
-/* ===== MEDICINE PAGE — SINGLE COLUMN LAYOUT ===== */
-.content-layout {
-  display: block;
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 40px 0 64px;
-}
-
-/* Hide old sidebar — now replaced by tabs */
-.content-sidebar { display: none; }
-.content-main { width: 100%; }
-
-.info-section {
-  padding: 36px 0;
-  border-bottom: 1px solid var(--bg);
-}
-.info-section:last-child { border-bottom: none; }
-
-.info-section h2 {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 14px;
-  padding-top: 4px;
-}
-
-/* ===== PAGE HEADER — tighter ===== */
-.page-header {
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: 28px 0 28px;
-}
-
-.page-header h1 {
-  font-family: 'Lora', Georgia, serif;
-  font-size: 1.9rem;
-  font-weight: 700;
-  margin: 8px 0 6px;
-  color: var(--ink);
-  letter-spacing: -.02em;
-}
-
-.generic-name {
-  font-size: 1rem;
-  font-weight: 400;
-  color: var(--muted);
-  font-family: 'Inter', sans-serif;
-}
-
-.page-desc {
-  font-size: .92rem;
-  color: var(--muted);
-  margin-bottom: 20px;
-}
-
-/* ===== QUICK FACTS — horizontal strip ===== */
-.quick-facts {
-  display: flex;
-  gap: 0;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin-top: 20px;
-}
-
-.fact-card {
-  flex: 1;
-  background: var(--white);
-  padding: 12px 16px;
-  border-right: 1px solid var(--border);
-}
-.fact-card:last-child { border-right: none; }
-
-.fact-label {
-  font-size: .7rem;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 3px;
-}
-
-.fact-value {
-  font-size: .85rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-@media (max-width: 640px) {
-  .quick-facts { flex-wrap: wrap; }
-  .fact-card { flex: 1 1 48%; }
-  .quick-answer { grid-template-columns: 1fr 1fr; }
-  .qa-item:last-child { grid-column: 1 / -1; }
-  .med-tab { padding: 12px 14px; font-size: .8rem; }
+  /* Mobiel: extra kaarten verbergen */
+  .med-card.is-hidden { display: none; }
+  .med-show-more { display: block; }
 }
