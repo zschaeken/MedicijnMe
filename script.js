@@ -1,50 +1,58 @@
-// ===== MEDICIJNEN DATABASE (fase 1: 30-50 medicijnen) =====
+// ===== MEDICIJNEN DATABASE (40 medicijnen, gesynchroniseerd met /medicijnen/) =====
 const medicijnen = [
   // Pijnstillers
   { naam: 'Paracetamol', merken: 'Dafalgan, Perdolan, Panadol', cat: 'Pijnstiller', url: 'medicijnen/paracetamol.html' },
   { naam: 'Ibuprofen', merken: 'Brufen, Advil, Nurofen', cat: 'Pijnstiller / NSAID', url: 'medicijnen/ibuprofen.html' },
   { naam: 'Naproxen', merken: 'Aleve, Naprosyn', cat: 'NSAID', url: 'medicijnen/naproxen.html' },
   { naam: 'Aspirine', merken: 'Cardioaspirine, Aspégic', cat: 'Pijnstiller / Bloedverdunner', url: 'medicijnen/aspirine.html' },
-  { naam: 'Diclofenac', merken: 'Voltaren, Cataflam', cat: 'NSAID', url: 'medicijnen/diclofenac.html' },
-  { naam: 'Codeïne', merken: 'Dafalgan Codeïne', cat: 'Opiaat / Pijnstiller', url: 'medicijnen/codeine.html' },
+  { naam: 'Diclofenac', merken: 'Voltaren, Cataflam', cat: 'Pijnstiller / NSAID', url: 'medicijnen/diclofenac.html' },
+  { naam: 'Tramadol', merken: 'Opioïde pijnstiller', cat: 'Pijnstiller / Opioïde', url: 'medicijnen/tramadol.html' },
 
   // Antibiotica
   { naam: 'Amoxicilline', merken: 'Clamoxyl, Flemoxin', cat: 'Antibioticum', url: 'medicijnen/amoxicilline.html' },
   { naam: 'Azitromycine', merken: 'Zithromax', cat: 'Antibioticum', url: 'medicijnen/azitromycine.html' },
   { naam: 'Doxycycline', merken: 'Vibramycin, Doxylin', cat: 'Antibioticum', url: 'medicijnen/doxycycline.html' },
-  { naam: 'Flucloxacilline', merken: 'Staphcillin', cat: 'Antibioticum', url: 'medicijnen/flucloxacilline.html' },
+  { naam: 'Flucloxacilline', merken: 'Staphylex', cat: 'Antibioticum', url: 'medicijnen/flucloxacilline.html' },
   { naam: 'Ciprofloxacine', merken: 'Ciproxine', cat: 'Antibioticum', url: 'medicijnen/ciprofloxacine.html' },
-  { naam: 'Trimethoprim', merken: 'Monotrim', cat: 'Antibioticum', url: 'medicijnen/trimethoprim.html' },
+  { naam: 'Clarithromycine', merken: 'Klacid', cat: 'Antibioticum', url: 'medicijnen/clarithromycine.html' },
+  { naam: 'Nitrofurantoïne', merken: 'Furadantine', cat: 'Antibioticum', url: 'medicijnen/nitrofurantoine.html' },
 
   // Allergie
   { naam: 'Cetirizine', merken: 'Zyrtec, Reactine', cat: 'Antihistaminicum', url: 'medicijnen/cetirizine.html' },
   { naam: 'Loratadine', merken: 'Claritine', cat: 'Antihistaminicum', url: 'medicijnen/loratadine.html' },
   { naam: 'Fexofenadine', merken: 'Telfast', cat: 'Antihistaminicum', url: 'medicijnen/fexofenadine.html' },
   { naam: 'Desloratadine', merken: 'Aerius', cat: 'Antihistaminicum', url: 'medicijnen/desloratadine.html' },
+  { naam: 'Levocetirizine', merken: 'Xyzal', cat: 'Antihistaminicum', url: 'medicijnen/levocetirizine.html' },
 
   // Maag & Darm
   { naam: 'Omeprazol', merken: 'Losec', cat: 'Maagzuurremmer', url: 'medicijnen/omeprazol.html' },
   { naam: 'Pantoprazol', merken: 'Pantomed, Controloc', cat: 'Maagzuurremmer', url: 'medicijnen/pantoprazol.html' },
-  { naam: 'Esomeprazol', merken: 'Nexium', cat: 'Maagzuurremmer', url: 'medicijnen/esomeprazol.html' },
-  { naam: 'Domperidon', merken: 'Motilium', cat: 'Maagmiddel', url: 'medicijnen/domperidon.html' },
-  { naam: 'Metoclopramide', merken: 'Primperan', cat: 'Anti-misselijkheid', url: 'medicijnen/metoclopramide.html' },
-  { naam: 'Loperamide', merken: 'Imodium', cat: 'Anti-diarree', url: 'medicijnen/loperamide.html' },
+  { naam: 'Esomeprazol', merken: 'Nexiam', cat: 'Maagzuurremmer', url: 'medicijnen/esomeprazol.html' },
+  { naam: 'Domperidon', merken: 'Motilium', cat: 'Maag & Darm', url: 'medicijnen/domperidon.html' },
+  { naam: 'Macrogol', merken: 'Movicol', cat: 'Laxeermiddel', url: 'medicijnen/macrogol.html' },
+  { naam: 'Loperamide', merken: 'Imodium', cat: 'Maag & Darm', url: 'medicijnen/loperamide.html' },
 
   // Hart & Bloedvaten
-  { naam: 'Metoprolol', merken: 'Selokeen, Lopresor', cat: 'Bètablokker', url: 'medicijnen/metoprolol.html' },
-  { naam: 'Atenolol', merken: 'Tenormin', cat: 'Bètablokker', url: 'medicijnen/atenolol.html' },
-  { naam: 'Amlodipine', merken: 'Norvasc, Amlor', cat: 'Calciumantagonist', url: 'medicijnen/amlodipine.html' },
-  { naam: 'Lisinopril', merken: 'Zestril, Prinivil', cat: 'ACE-remmer', url: 'medicijnen/lisinopril.html' },
-  { naam: 'Atorvastatine', merken: 'Lipitor', cat: 'Cholesterolverlager', url: 'medicijnen/atorvastatine.html' },
+  { naam: 'Atorvastatine', merken: 'Lipitor, Torvast', cat: 'Cholesterolverlager', url: 'medicijnen/atorvastatine.html' },
+  { naam: 'Lisinopril', merken: 'Zestril, Prinivil', cat: 'Bloeddrukverlagend', url: 'medicijnen/lisinopril.html' },
+  { naam: 'Metformine', merken: 'Glucophage, Metforal', cat: 'Diabetes type 2', url: 'medicijnen/metformine.html' },
+  { naam: 'Amlodipine', merken: 'Amlor', cat: 'Bloeddrukverlagend', url: 'medicijnen/amlodipine.html' },
+  { naam: 'Metoprolol', merken: 'Selokeen', cat: 'Bloeddrukverlagend', url: 'medicijnen/metoprolol.html' },
+  { naam: 'Simvastatine', merken: 'Zocor', cat: 'Cholesterolverlager', url: 'medicijnen/simvastatine.html' },
+  { naam: 'Valsartan', merken: 'Tareg', cat: 'Bloeddrukverlagend', url: 'medicijnen/valsartan.html' },
 
   // Luchtwegen
-  { naam: 'Salbutamol', merken: 'Ventolin', cat: 'Luchtwegverwijder', url: 'medicijnen/salbutamol.html' },
-  { naam: 'Fluticason', merken: 'Flixotide, Flonase', cat: 'Corticosteroïd inhalatie', url: 'medicijnen/fluticason.html' },
-  { naam: 'Montelukast', merken: 'Singulair', cat: 'Astmamiddel', url: 'medicijnen/montelukast.html' },
+  { naam: 'Betahistine', merken: 'Betaserc', cat: 'Duizeligheid', url: 'medicijnen/betahistine.html' },
+  { naam: 'Fluticason', merken: 'Flixotide, Flixonase', cat: 'Luchtwegen / Corticosteroïd', url: 'medicijnen/fluticason.html' },
+  { naam: 'Salbutamol', merken: 'Ventolin, Airomir', cat: 'Luchtwegen / Astma', url: 'medicijnen/salbutamol.html' },
+  { naam: 'Montelukast', merken: 'Singulair', cat: 'Astma-onderhoud', url: 'medicijnen/montelukast.html' },
+  { naam: 'Xylometazoline', merken: 'Otrivin', cat: 'Neusdecongestivum', url: 'medicijnen/xylometazoline.html' },
 
   // Huid
-  { naam: 'Hydrocortison', merken: 'Cortisone crème', cat: 'Corticosteroïd huid', url: 'medicijnen/hydrocortison.html' },
-  { naam: 'Clotrimazol', merken: 'Canesten', cat: 'Schimmelwerend', url: 'medicijnen/clotrimazol.html' },
+  { naam: 'Prednisolon', merken: 'Medrol, Solupred', cat: 'Corticosteroïd', url: 'medicijnen/prednisolon.html' },
+  { naam: 'Sertraline', merken: 'Zoloft, Serlain', cat: 'Antidepressivum', url: 'medicijnen/sertraline.html' },
+  { naam: 'Hydrocortison', merken: 'Crème 1%', cat: 'Corticosteroïd', url: 'medicijnen/hydrocortison.html' },
+  { naam: 'Miconazol', merken: 'Daktarin', cat: 'Antischimmelmiddel', url: 'medicijnen/miconazol.html' },
 ];
 
 // ===== ZOEKFUNCTIE =====
